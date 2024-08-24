@@ -9,9 +9,13 @@ import { Tarefa } from '../../Tarefa';
 export class TaskService {
   private apiUrl = 'http://localhost:3000/tasks';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  public getTasks(): Observable<Tarefa[]> {
-    return this.httpClient.get<Tarefa[]>(this.apiUrl);
+  getTasks(): Observable<Tarefa[]> {
+    return this.http.get<Tarefa[]>(this.apiUrl);
+  }
+
+  deleteTask(tarefa: Tarefa): Observable<Tarefa> {
+    return this.http.delete<Tarefa>(`${this.apiUrl}/${tarefa.id}`);
   }
 }

@@ -22,4 +22,8 @@ export class TaskService {
   public updateTask(tarefa: Tarefa): Observable<Tarefa> {
     return this.http.put<Tarefa>(`${this.apiUrl}/${tarefa.id}`, tarefa);
   }
+
+  public addTask(tarefa: Tarefa): Observable<Tarefa> {
+    return this.http.post<Tarefa>(`${this.apiUrl}`, tarefa)
+  }
 }

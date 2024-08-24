@@ -23,11 +23,16 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  deleteTask(tarefa: Tarefa) {
+  public deleteTask(tarefa: Tarefa) {
     this.taskService
       .deleteTask(tarefa)
       .subscribe(
         () => (this.tarefas = this.tarefas.filter((t) => t.id !== tarefa.id))
       );
+  }
+
+  public toggleConcluido(tarefa: Tarefa) {
+    tarefa.concluido = !tarefa.concluido;
+    this.taskService.updateTask(tarefa).subscribe();
   }
 }
